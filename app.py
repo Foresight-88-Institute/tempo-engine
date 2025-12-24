@@ -10,23 +10,11 @@ st.set_page_config(
     layout="wide"
 )
 
-# 自定義 CSS 讓介面更有質感 (隱藏預設選單，加入品牌色)
+# 自定義 CSS (保持 v1.4 的視覺修正，確保字體清晰)
 st.markdown("""
 <style>
-    .reportview-container {
-        background: #0e1117;
-    }
-    .main .block-container {
-        padding-top: 2rem;
-    }
     h1 {
-        color: #C5A059; /* Foresight Gold */
-    }
-    h3 {
-        color: #E0E0E0;
-    }
-    .stSlider [data-baseweb="slider"] {
-        color: #C5A059;
+        color: #C5A059 !important;
     }
     .stTabs [data-baseweb="tab-list"] {
         gap: 24px;
@@ -34,15 +22,23 @@ st.markdown("""
     .stTabs [data-baseweb="tab"] {
         height: 50px;
         white-space: pre-wrap;
-        background-color: #0e1117;
         border-radius: 4px 4px 0px 0px;
         gap: 1px;
         padding-top: 10px;
         padding-bottom: 10px;
     }
     .stTabs [aria-selected="true"] {
-        background-color: #1f2937;
         border-bottom: 2px solid #C5A059;
+        font-weight: bold;
+    }
+    .stSlider [data-baseweb="slider"] {
+        color: #C5A059;
+    }
+    /* 增加一個醒目的導航提示樣式 */
+    .nav-instruction {
+        font-size: 14px;
+        color: #888;
+        margin-bottom: 10px;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -53,9 +49,13 @@ with col1:
     st.markdown("# ⏳") 
 with col2:
     st.title("Foresight 88 Intelligence")
-    st.markdown("**Tempo Economics™ Simulation Engine | v1.3 Beta**")
+    st.markdown("**Tempo Economics™ Simulation Engine | v1.5 Beta**")
 
 st.markdown("---")
+
+# === 全局導航提示 (Global Navigation Hint) ===
+# 確保訪客知道有兩個維度
+st.info("👆 **SYSTEM ARCHITECTURE**: This engine consists of two layers. Please switch tabs below to view **National Strategy** or **Personal Leadership**.")
 
 # 建立分頁 (Tabs)
 tab1, tab2 = st.tabs(["🌍 National Sovereignty (Macro)", "🧠 Leader's Biological Tempo (Micro)"])
@@ -98,17 +98,16 @@ with tab1:
 
     st.subheader(f"Scenario Analysis: {scenario}")
     
-    # === NEW: 使用指南 (Step Guide) ===
-    with st.expander("ℹ️ **HOW TO RUN SIMULATION (Click to Expand)**", expanded=True):
+    # === Macro 使用指南 ===
+    with st.expander("ℹ️ **MACRO PROTOCOL: How to Run (Click to Expand)**", expanded=True):
         st.markdown("""
-        **Protocol for Decision Makers:**
-        1.  **Define Strategy**: Use the sliders below to set your target growth and intensity.
-        2.  **Apply Stress**: Drag the **'Systemic Acceleration'** slider to the right to simulate high-tempo policies.
-        3.  **Analyze the Gap**: Observe where the **Gold Line (Real GHDP)** detaches from the **Red Line (Nominal GDP)**.
+        **Objective: Minimize the gap between Growth (Red) and Human Capacity (Gold).**
+        1.  **Define Strategy**: Set your target GDP growth.
+        2.  **Apply Stress**: Increase 'Systemic Acceleration' to simulate high-tempo policies.
+        3.  **Observe**: Watch for the 'Sovereignty Gap' where human resilience fails to keep up.
         """)
     
-    st.info(f"💡 **Context Intelligence**: {desc}")
-    st.caption("👇 **INTERACTIVE ZONE: Adjust parameters to stress-test your economy**")
+    st.caption(f"💡 **Context**: {desc}")
 
     # 3. 互動滑桿
     col_a, col_b, col_c = st.columns(3)
@@ -119,7 +118,7 @@ with tab1:
     with col_c:
         human_resilience = st.slider("Human Capital Resilience", 0, 100, default_resilience)
 
-    # 4. 運算核心 (GHDP Algorithm)
+    # 4. 運算核心
     years = np.arange(2025, 2036)
     n_years = len(years)
     
@@ -136,22 +135,22 @@ with tab1:
 
     # 5. 繪製圖表
     fig, ax = plt.subplots(figsize=(10, 4))
-    fig.patch.set_facecolor('#0e1117')
-    ax.set_facecolor('#0e1117')
+    fig.patch.set_alpha(0.0) 
+    ax.set_facecolor('#0e1117') 
     
     ax.plot(years, gdp, color='#FF4B4B', linestyle='--', label='Traditional GDP (Nominal)', linewidth=2)
     ax.plot(years, ghdp, color='#C5A059', label='Real GHDP (Human-Adjusted)', linewidth=3)
     
-    ax.set_title("The Sovereignty Gap (2025-2035)", color='white', fontsize=12)
-    ax.tick_params(axis='x', colors='white')
-    ax.tick_params(axis='y', colors='white')
+    ax.set_title("The Sovereignty Gap (2025-2035)", color='gray', fontsize=12)
+    ax.tick_params(axis='x', colors='gray')
+    ax.tick_params(axis='y', colors='gray')
     ax.legend(facecolor='#0e1117', labelcolor='white')
     ax.grid(color='#444444', linestyle=':', linewidth=0.5)
     
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
-    ax.spines['bottom'].set_color('white')
-    ax.spines['left'].set_color('white')
+    ax.spines['bottom'].set_color('gray')
+    ax.spines['left'].set_color('gray')
 
     st.pyplot(fig)
 
@@ -174,8 +173,21 @@ with tab1:
 # ==========================================
 with tab2:
     st.markdown("### 🧬 The Executive Biological Ledger")
-    st.markdown("_No wearables required. Based on subjective tempo perception._")
     
+    # === Wearable Remark (The Apple Hook) ===
+    st.caption("""
+    *Current Mode: Subjective Perception Input.* *🚀 **Roadmap v2.0**: Integration with **Apple Health / Oura Ring API** for real-time biometric telemetry. (Partnership pending)*
+    """)
+    
+    # === Micro 使用指南 (新增) ===
+    with st.expander("ℹ️ **EXECUTIVE PROTOCOL: How to Run (Click to Expand)**", expanded=True):
+        st.markdown("""
+        **Objective: Maintain a positive Biological Tempo Score (>75).**
+        1.  **Audit Liabilities**: Adjust 'Decisions' and 'Fragmentation' to match your current workload.
+        2.  **Assess Assets**: Input your sleep quality and deep work hours.
+        3.  **Check the Horizon**: Look at the **30-Day Burnout Horizon** graph below. Is it trending down?
+        """)
+
     col_input, col_diag = st.columns([1, 1])
     
     with col_input:
@@ -244,20 +256,20 @@ with tab2:
         trajectory = [max(0, min(100, t)) for t in trajectory]
         
         fig_micro, ax_micro = plt.subplots(figsize=(6, 3))
-        fig_micro.patch.set_facecolor('#0e1117')
+        fig_micro.patch.set_alpha(0.0)
         ax_micro.set_facecolor('#0e1117')
         
         line_color = '#C5A059' if daily_drift >= 0 else '#FF4B4B'
         ax_micro.plot(days, trajectory, color=line_color, linewidth=3)
-        ax_micro.axhline(y=40, color='#444444', linestyle='--', linewidth=1, label='Crash Threshold')
+        ax_micro.axhline(y=40, color='gray', linestyle='--', linewidth=1, label='Crash Threshold')
         
         ax_micro.set_ylim(0, 100)
-        ax_micro.set_xlabel("Days from Now", color='white', fontsize=8)
-        ax_micro.set_ylabel("Cognitive Capacity", color='white', fontsize=8)
-        ax_micro.tick_params(colors='white')
+        ax_micro.set_xlabel("Days from Now", color='gray', fontsize=8)
+        ax_micro.set_ylabel("Cognitive Capacity", color='gray', fontsize=8)
+        ax_micro.tick_params(colors='gray')
         ax_micro.spines['top'].set_visible(False)
         ax_micro.spines['right'].set_visible(False)
-        ax_micro.spines['bottom'].set_color('white')
-        ax_micro.spines['left'].set_color('white')
+        ax_micro.spines['bottom'].set_color('gray')
+        ax_micro.spines['left'].set_color('gray')
         
         st.pyplot(fig_micro)
