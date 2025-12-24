@@ -53,7 +53,7 @@ with col1:
     st.markdown("# ⏳") 
 with col2:
     st.title("Foresight 88 Intelligence")
-    st.markdown("**Tempo Economics™ Simulation Engine | v1.2 Beta**")
+    st.markdown("**Tempo Economics™ Simulation Engine | v1.3 Beta**")
 
 st.markdown("---")
 
@@ -97,7 +97,18 @@ with tab1:
         desc = "CRITICAL: Tempo stress exceeds biological recovery limits. Demographic collapse risk."
 
     st.subheader(f"Scenario Analysis: {scenario}")
-    st.info(desc)
+    
+    # === NEW: 使用指南 (Step Guide) ===
+    with st.expander("ℹ️ **HOW TO RUN SIMULATION (Click to Expand)**", expanded=True):
+        st.markdown("""
+        **Protocol for Decision Makers:**
+        1.  **Define Strategy**: Use the sliders below to set your target growth and intensity.
+        2.  **Apply Stress**: Drag the **'Systemic Acceleration'** slider to the right to simulate high-tempo policies.
+        3.  **Analyze the Gap**: Observe where the **Gold Line (Real GHDP)** detaches from the **Red Line (Nominal GDP)**.
+        """)
+    
+    st.info(f"💡 **Context Intelligence**: {desc}")
+    st.caption("👇 **INTERACTIVE ZONE: Adjust parameters to stress-test your economy**")
 
     # 3. 互動滑桿
     col_a, col_b, col_c = st.columns(3)
