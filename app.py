@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# --- 0. 頁面配置 (Foresight 88 品牌設定) ---
+# --- 0. 頁面配置 ---
 st.set_page_config(
     page_title="Foresight 88 | Tempo Intelligence",
     page_icon="⏳",
@@ -39,10 +39,6 @@ st.markdown("""
         color: #888;
         margin-bottom: 10px;
     }
-    .disclaimer-text {
-        font-size: 12px;
-        color: #666;
-    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -52,7 +48,7 @@ with col1:
     st.markdown("# ⏳") 
 with col2:
     st.title("Foresight 88 Intelligence")
-    st.markdown("**Tempo Economics™ Simulation Engine | v1.8 Beta**")
+    st.markdown("**Tempo Economics™ Simulation Engine | v1.9 Mobile Optimized**")
 
 st.markdown("---")
 
@@ -66,17 +62,16 @@ tab1, tab2 = st.tabs(["🌍 National Sovereignty (Macro)", "🧠 Leader's Biolog
 # TAB 1: 國家宏觀模擬 (Macro)
 # ==========================================
 with tab1:
-    st.sidebar.header("🎛️ Macro Controls")
+    # --- FIX: 把選擇器從 Sidebar 移到主畫面 ---
+    st.subheader("1. Context Configuration")
     
-    # 1. 選擇情境
-    scenario = st.sidebar.selectbox(
+    # 直接放在這裡，手機上一目了然
+    scenario = st.selectbox(
         "Select Jurisdiction Context",
         ["Abu Dhabi (Vision 2030) 🇦🇪", "Singapore (Smart Nation) 🇸🇬", "Japan (Stagnation) 🇯🇵", "South Korea (Crisis) 🇰🇷"]
     )
     
-    st.sidebar.markdown("---")
-    
-    # 2. 預設參數
+    # 2. 預設參數設定
     if "Abu Dhabi" in scenario:
         default_growth = 5.5
         default_stress = 45
@@ -98,10 +93,10 @@ with tab1:
         default_resilience = 30
         desc = "CRITICAL: Tempo stress exceeds biological recovery limits. Demographic collapse risk."
 
-    st.subheader(f"Scenario Analysis: {scenario}")
+    st.caption(f"💡 **Context Intelligence**: {desc}")
     
     # Macro 使用指南
-    with st.expander("ℹ️ **MACRO PROTOCOL: How to Run (Click to Expand)**", expanded=True):
+    with st.expander("ℹ️ **MACRO PROTOCOL: How to Run (Click to Expand)**", expanded=False):
         st.markdown("""
         **Objective: Minimize the gap between Growth (Red) and Human Capacity (Gold).**
         1.  **Define Strategy**: Set your target GDP growth.
@@ -109,7 +104,8 @@ with tab1:
         3.  **Observe**: Watch for the 'Sovereignty Gap' where human resilience fails to keep up.
         """)
     
-    st.caption(f"💡 **Context**: {desc}")
+    st.markdown("---")
+    st.subheader("2. Stress Test Parameters")
 
     # 3. 互動滑桿
     col_a, col_b, col_c = st.columns(3)
@@ -136,6 +132,7 @@ with tab1:
         ghdp.append(val)
 
     # 5. 繪製圖表
+    st.subheader("3. The Sovereignty Gap Visualization")
     fig, ax = plt.subplots(figsize=(10, 4))
     fig.patch.set_alpha(0.0) 
     ax.set_facecolor('#0e1117') 
@@ -143,7 +140,7 @@ with tab1:
     ax.plot(years, gdp, color='#FF4B4B', linestyle='--', label='Traditional GDP (Nominal)', linewidth=2)
     ax.plot(years, ghdp, color='#C5A059', label='Real GHDP (Human-Adjusted)', linewidth=3)
     
-    ax.set_title("The Sovereignty Gap (2025-2035)", color='gray', fontsize=12)
+    ax.set_title("Forecast 2025-2035", color='gray', fontsize=12)
     ax.tick_params(axis='x', colors='gray')
     ax.tick_params(axis='y', colors='gray')
     ax.legend(facecolor='#0e1117', labelcolor='white')
@@ -176,12 +173,10 @@ with tab1:
 with tab2:
     st.markdown("### 🧬 The Executive Biological Ledger")
     
-    # Apple/Oura Remark
     st.caption("""
     *Current Mode: Subjective Perception Input.* *🚀 **Roadmap v2.0**: Integration with **Apple Health / Oura Ring API** for real-time biometric telemetry. (Partnership pending)*
     """)
     
-    # Micro 使用指南
     with st.expander("ℹ️ **EXECUTIVE PROTOCOL: How to Run (Click to Expand)**", expanded=True):
         st.markdown("""
         **Objective: Maintain a positive Biological Tempo Score (>75).**
@@ -277,25 +272,23 @@ with tab2:
         st.pyplot(fig_micro)
 
 # ==========================================
-# FOOTER: 免責聲明與聯繫 (Disclaimer & Contact)
+# FOOTER: 免責聲明與聯繫
 # ==========================================
 st.markdown("---")
 
-# 免責聲明 (可收折)
 with st.expander("⚖️ **Disclaimer & Research Philosophy (Open to Read)**"):
     st.markdown("""
-    **Foresight 88 Institute | Preliminary Research Model (v1.6)**
+    **Foresight 88 Institute | Preliminary Research Model (v1.9)**
     
-    1.  **Nature of Simulation**: This engine is a theoretical prototype designed to visualize the *Gross Human Dynamics Product (GHDP)* concept. It calculates the friction coefficient introduced by environmental stressors (noise, speed, complexity) on human biological systems.
+    1.  **Nature of Simulation**: This engine is a theoretical prototype designed to visualize the *Gross Human Dynamics Product (GHDP)* concept. It calculates the friction coefficient introduced by environmental stressors on human biological systems.
     
-    2.  **Relation to GDP**: **We do not oppose GDP.** We view GDP as a metric of *Velocity*. GHDP is introduced as a complementary metric of *Sustainability*. The goal is not to replace economic growth, but to align it with biological reality to prevent systemic burnout.
+    2.  **Relation to GDP**: **We do not oppose GDP.** We view GDP as a metric of *Velocity*. GHDP is introduced as a complementary metric of *Sustainability*.
     
-    3.  **Technological Stance**: **We are not anti-technology.** Algorithms and AI are powerful accelerators. This model seeks to study the interplay between *algorithmic speed* and *biological recovery*, ensuring that technology serves human sovereignty rather than eroding it.
+    3.  **Technological Stance**: **We are not anti-technology.** This model seeks to study the interplay between *algorithmic speed* and *biological recovery*, ensuring that technology serves human sovereignty.
     
-    4.  **No Financial Advice**: The data projected here is for strategic illustrative purposes only and should not be used for financial planning without comprehensive data validation.
+    4.  **No Financial Advice**: The data projected here is for strategic illustrative purposes only.
     """)
 
-# 聯繫我們 (CTA)
 st.markdown("### 🤝 **Initialize Strategic Dialogue**")
 st.write("To deploy the GHDP™ framework in your jurisdiction or organization, contact the Foresight 88 research team.")
 
