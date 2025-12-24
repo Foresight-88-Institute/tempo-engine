@@ -48,7 +48,7 @@ with col1:
     st.markdown("# ⏳") 
 with col2:
     st.title("Foresight 88 Intelligence")
-    st.markdown("**Tempo Economics™ Simulation Engine | v1.9 Mobile Optimized**")
+    st.markdown("**Tempo Economics™ Simulation Engine | v2.0 Beta**")
 
 st.markdown("---")
 
@@ -62,16 +62,17 @@ tab1, tab2 = st.tabs(["🌍 National Sovereignty (Macro)", "🧠 Leader's Biolog
 # TAB 1: 國家宏觀模擬 (Macro)
 # ==========================================
 with tab1:
-    # --- FIX: 把選擇器從 Sidebar 移到主畫面 ---
     st.subheader("1. Context Configuration")
     
-    # 直接放在這裡，手機上一目了然
+    # --- UX FIX: 增加明確的「點擊這裡」提示 ---
+    st.caption("👇 **Tap below to switch Jurisdiction Context:**")
+    
     scenario = st.selectbox(
-        "Select Jurisdiction Context",
+        "Select Target Region 🔽", # 標題加入箭頭暗示
         ["Abu Dhabi (Vision 2030) 🇦🇪", "Singapore (Smart Nation) 🇸🇬", "Japan (Stagnation) 🇯🇵", "South Korea (Crisis) 🇰🇷"]
     )
     
-    # 2. 預設參數設定
+    # 2. 預設參數
     if "Abu Dhabi" in scenario:
         default_growth = 5.5
         default_stress = 45
@@ -278,7 +279,7 @@ st.markdown("---")
 
 with st.expander("⚖️ **Disclaimer & Research Philosophy (Open to Read)**"):
     st.markdown("""
-    **Foresight 88 Institute | Preliminary Research Model (v1.9)**
+    **Foresight 88 Institute | Preliminary Research Model (v2.0)**
     
     1.  **Nature of Simulation**: This engine is a theoretical prototype designed to visualize the *Gross Human Dynamics Product (GHDP)* concept. It calculates the friction coefficient introduced by environmental stressors on human biological systems.
     
