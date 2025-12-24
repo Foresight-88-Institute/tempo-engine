@@ -52,7 +52,7 @@ with col1:
     st.markdown("# ⏳") 
 with col2:
     st.title("Foresight 88 Intelligence")
-    st.markdown("**Tempo Economics™ Simulation Engine | v1.7 Beta**")
+    st.markdown("**Tempo Economics™ Simulation Engine | v1.8 Beta**")
 
 st.markdown("---")
 
@@ -303,6 +303,6 @@ c1, c2, c3 = st.columns([1, 1, 3])
 with c1:
     st.link_button("📧 Email Us", "mailto:eunice.wong@foresight88.institute")
 with c2:
-    st.link_button("🔗 LinkedIn", "https://www.linkedin.com/in/eunice-wong-foresight88") # 預留位，可之後改成妳的真實連結
+    st.link_button("🔗 LinkedIn", "https://www.linkedin.com/in/eunice-wong-ba8399362/")
 with c3:
     st.caption("© 2025 Foresight 88 Institute. All Rights Reserved.")
