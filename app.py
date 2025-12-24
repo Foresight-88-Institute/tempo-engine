@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# 自定義 CSS (保持 v1.4 的視覺修正，確保字體清晰)
+# 自定義 CSS
 st.markdown("""
 <style>
     h1 {
@@ -34,11 +34,14 @@ st.markdown("""
     .stSlider [data-baseweb="slider"] {
         color: #C5A059;
     }
-    /* 增加一個醒目的導航提示樣式 */
     .nav-instruction {
         font-size: 14px;
         color: #888;
         margin-bottom: 10px;
+    }
+    .disclaimer-text {
+        font-size: 12px;
+        color: #666;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -49,19 +52,18 @@ with col1:
     st.markdown("# ⏳") 
 with col2:
     st.title("Foresight 88 Intelligence")
-    st.markdown("**Tempo Economics™ Simulation Engine | v1.5 Beta**")
+    st.markdown("**Tempo Economics™ Simulation Engine | v1.7 Beta**")
 
 st.markdown("---")
 
-# === 全局導航提示 (Global Navigation Hint) ===
-# 確保訪客知道有兩個維度
+# === 全局導航提示 ===
 st.info("👆 **SYSTEM ARCHITECTURE**: This engine consists of two layers. Please switch tabs below to view **National Strategy** or **Personal Leadership**.")
 
-# 建立分頁 (Tabs)
+# 建立分頁
 tab1, tab2 = st.tabs(["🌍 National Sovereignty (Macro)", "🧠 Leader's Biological Tempo (Micro)"])
 
 # ==========================================
-# TAB 1: 國家宏觀模擬 (The Macro Simulator)
+# TAB 1: 國家宏觀模擬 (Macro)
 # ==========================================
 with tab1:
     st.sidebar.header("🎛️ Macro Controls")
@@ -98,7 +100,7 @@ with tab1:
 
     st.subheader(f"Scenario Analysis: {scenario}")
     
-    # === Macro 使用指南 ===
+    # Macro 使用指南
     with st.expander("ℹ️ **MACRO PROTOCOL: How to Run (Click to Expand)**", expanded=True):
         st.markdown("""
         **Objective: Minimize the gap between Growth (Red) and Human Capacity (Gold).**
@@ -169,17 +171,17 @@ with tab1:
         st.success("✅ **OPTIMAL**: Sovereignty is secure. Human capital is aligned with growth.")
 
 # ==========================================
-# TAB 2: 領袖級微觀掃描 (The Executive Micro Scan)
+# TAB 2: 個人/領袖掃描 (Micro)
 # ==========================================
 with tab2:
     st.markdown("### 🧬 The Executive Biological Ledger")
     
-    # === Wearable Remark (The Apple Hook) ===
+    # Apple/Oura Remark
     st.caption("""
     *Current Mode: Subjective Perception Input.* *🚀 **Roadmap v2.0**: Integration with **Apple Health / Oura Ring API** for real-time biometric telemetry. (Partnership pending)*
     """)
     
-    # === Micro 使用指南 (新增) ===
+    # Micro 使用指南
     with st.expander("ℹ️ **EXECUTIVE PROTOCOL: How to Run (Click to Expand)**", expanded=True):
         st.markdown("""
         **Objective: Maintain a positive Biological Tempo Score (>75).**
@@ -273,3 +275,34 @@ with tab2:
         ax_micro.spines['left'].set_color('gray')
         
         st.pyplot(fig_micro)
+
+# ==========================================
+# FOOTER: 免責聲明與聯繫 (Disclaimer & Contact)
+# ==========================================
+st.markdown("---")
+
+# 免責聲明 (可收折)
+with st.expander("⚖️ **Disclaimer & Research Philosophy (Open to Read)**"):
+    st.markdown("""
+    **Foresight 88 Institute | Preliminary Research Model (v1.6)**
+    
+    1.  **Nature of Simulation**: This engine is a theoretical prototype designed to visualize the *Gross Human Dynamics Product (GHDP)* concept. It calculates the friction coefficient introduced by environmental stressors (noise, speed, complexity) on human biological systems.
+    
+    2.  **Relation to GDP**: **We do not oppose GDP.** We view GDP as a metric of *Velocity*. GHDP is introduced as a complementary metric of *Sustainability*. The goal is not to replace economic growth, but to align it with biological reality to prevent systemic burnout.
+    
+    3.  **Technological Stance**: **We are not anti-technology.** Algorithms and AI are powerful accelerators. This model seeks to study the interplay between *algorithmic speed* and *biological recovery*, ensuring that technology serves human sovereignty rather than eroding it.
+    
+    4.  **No Financial Advice**: The data projected here is for strategic illustrative purposes only and should not be used for financial planning without comprehensive data validation.
+    """)
+
+# 聯繫我們 (CTA)
+st.markdown("### 🤝 **Initialize Strategic Dialogue**")
+st.write("To deploy the GHDP™ framework in your jurisdiction or organization, contact the Foresight 88 research team.")
+
+c1, c2, c3 = st.columns([1, 1, 3])
+with c1:
+    st.link_button("📧 Email Us", "mailto:eunice.wong@foresight88.institute")
+with c2:
+    st.link_button("🔗 LinkedIn", "https://www.linkedin.com/in/eunice-wong-foresight88") # 預留位，可之後改成妳的真實連結
+with c3:
+    st.caption("© 2025 Foresight 88 Institute. All Rights Reserved.")
