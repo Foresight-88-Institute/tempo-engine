@@ -1,3 +1,6 @@
+# v3.1 Analyst Edition — Parameters frozen for research testing
+# Foresight 88 Institute | Tempo Intelligence Framework
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -30,7 +33,7 @@ col1, col2 = st.columns([1, 4])
 with col1: st.markdown("# ⏳") 
 with col2:
     st.title("Foresight 88 Intelligence")
-    st.markdown("**Tempo Economics™ Simulation Engine | v3.0 Causal Edition**")
+    st.markdown("**Tempo Economics™ Simulation Engine | v3.1 Analyst Edition**")
 
 st.markdown("---")
 st.info("👆 **SYSTEM ARCHITECTURE**: This engine consists of two layers. Please switch tabs below to view **National Strategy** or **Personal Leadership**.")
@@ -50,7 +53,7 @@ with tab1:
         ["Abu Dhabi (Vision 2030) 🇦🇪", "Singapore (Smart Nation) 🇸🇬", "Japan (Stagnation) 🇯🇵", "South Korea (Crisis) 🇰🇷"]
     )
     
-    # 預設參數
+    # 預設參數 (Frozen for Research)
     if "Abu Dhabi" in scenario:
         default_growth, default_stress, default_resilience = 5.5, 45, 85
         desc = "High resource buffer. Opportunity to define global tempo."
@@ -87,7 +90,7 @@ with tab1:
     with col_c:
         human_resilience = st.slider("Human Capital Resilience (Base)", 0, 100, default_resilience)
 
-    # === MACRO 运算核心 (v3.0 CAUSAL LOGIC) ===
+    # === MACRO 运算核心 (v3.0 CAUSAL LOGIC - FROZEN) ===
     years = np.arange(2025, 2036)
     n_years = len(years)
     
@@ -95,36 +98,32 @@ with tab1:
     gdp = [100 * ((1 + target_growth/100) ** i) for i in range(n_years)]
     
     # 2. 因果关联：增长压力 (Growth Pressure)
-    # 核心逻辑：你想要的增长越快，对系统的消耗越大。
-    # 如果 Target Growth 是 10%，Resilience 会自动打折 50%
     growth_pressure = target_growth / 10 
     effective_resilience = human_resilience * (1 - growth_pressure * 0.5)
     
-    # 3. 节奏失配 (使用 Effective Resilience 而不是 Base)
+    # 3. 节奏失配
     tempo_misalignment = max(0, (tempo_stress - effective_resilience) / 100)
     
     ghdp = []
     for i in range(n_years):
-        # A. 节奏震荡 (Oscillation)
-        # 高 Misalignment 会导致剧烈波动
-        oscillation = np.sin(i / 1.5) * tempo_misalignment * 0.12 # 放大了一点波动可见性
-        
+        # A. 节奏震荡
+        oscillation = np.sin(i / 1.5) * tempo_misalignment * 0.12
         # B. 修复幻觉 (Policy Relief)
         if i > 0 and i % 4 == 0:
-            policy_relief = 0.08 # 救市力度
+            policy_relief = 0.08 
         else:
             policy_relief = 0
-            
-        # C. 不可逆侵蚀 (Irreversible Drag)
-        # 这里的指数 i**1.5 更加严厉，模拟长期疲劳
+        # C. 不可逆侵蚀
         irreversible_drag = tempo_misalignment * 0.02 * (i ** 1.5)
         
-        # 合成
         adjusted = 1 - irreversible_drag + oscillation + policy_relief
         adjusted = max(0, adjusted)
         ghdp.append(gdp[i] * adjusted)
 
-    # 绘图
+    # 4. === RATIO CALCULATION ===
+    capacity_ratio = np.array(ghdp) / np.array(gdp)
+
+    # 5. 绘图 1: 主图 (Gap)
     st.subheader("3. The Sovereignty Gap Visualization")
     fig, ax = plt.subplots(figsize=(10, 4))
     fig.patch.set_alpha(0.0) 
@@ -146,7 +145,28 @@ with tab1:
 
     st.pyplot(fig)
 
-    # 诊断
+    # 6. === 绘图 2: Ratio Chart ===
+    st.markdown("#### 📉 Synchronization Ratio (Bio-Efficiency)")
+    fig_ratio, ax_ratio = plt.subplots(figsize=(10, 2))
+    fig_ratio.patch.set_alpha(0.0)
+    ax_ratio.set_facecolor('#0e1117')
+    
+    ax_ratio.plot(years, capacity_ratio, color='#C5A059', linewidth=2, label='Bio/System Ratio')
+    ax_ratio.axhline(1, color='gray', linestyle='--', alpha=0.5, linewidth=1)
+    
+    ax_ratio.set_ylim(0, 1.1)
+    ax_ratio.tick_params(axis='x', colors='gray')
+    ax_ratio.tick_params(axis='y', colors='gray')
+    ax_ratio.grid(color='#444444', linestyle=':', linewidth=0.5)
+    ax_ratio.spines['top'].set_visible(False)
+    ax_ratio.spines['right'].set_visible(False)
+    ax_ratio.spines['bottom'].set_color('gray')
+    ax_ratio.spines['left'].set_color('gray')
+    
+    st.pyplot(fig_ratio)
+    st.caption("**Metric Analysis**: This ratio represents biological synchronization with systemic velocity. Values < 1.0 indicate structural friction.")
+
+    # 7. 诊断
     final_gap = gdp[-1] - ghdp[-1]
     m1, m2, m3 = st.columns(3)
     m1.metric("2035 GDP Projection", f"${int(gdp[-1])}B", "+Growth")
@@ -187,13 +207,11 @@ with tab2:
         sleep_quality = st.slider("Restorative Depth (1-10)", 1, 10, 6)
         flow_state = st.slider("Deep Work / Flow State (Hours)", 0.0, 4.0, 1.0, 0.5)
 
-    # === MICRO 运算核心 (v3.0 NON-LINEAR LOGIC) ===
+    # === MICRO 运算核心 (v3.0 NON-LINEAR LOGIC - FROZEN) ===
     biological_cost = (decision_load * 8) + (fragmentation * 5)
     biological_recovery = (sleep_quality * 6) + (flow_state * 15)
     net_tempo = biological_recovery - biological_cost
     
-    # v3.0 Upgrade: Nonlinear Fatigue Penalty
-    # 如果 net_tempo 是负的，惩罚会呈指数级增长
     if net_tempo < 0:
         fatigue_penalty = (abs(net_tempo) ** 1.3) * 0.5
     else:
@@ -223,13 +241,10 @@ with tab2:
         volatility_factor = fragmentation * 0.6 
         
         for d in days:
-            # 基础漂移 (含非线性惩罚)
             drift = (net_tempo - fatigue_penalty) * 0.1 * d
-            # 波动
             daily_fluctuation = np.sin(d) * volatility_factor
-            # 肾上腺素代偿 (Adrenaline Masking)
             adrenaline_boost = 0
-            if net_tempo < 0 and d < 9: # 延长一点代偿期，让后面的跌落更痛
+            if net_tempo < 0 and d < 9:
                 adrenaline_boost = abs(net_tempo) * 0.8 * np.sin(d/9 * np.pi)
             
             val = base_score + drift + daily_fluctuation + adrenaline_boost
@@ -259,18 +274,18 @@ with tab2:
             st.caption("⚠️ **v3.0 Logic**: Burnout is non-linear. The 'Adrenaline Masking' (first week peaks) will fail abruptly.")
 
 # ==========================================
-# FOOTER: Legal Boundary & Contact
+# FOOTER: Legal, Contact & Expert Review
 # ==========================================
 st.markdown("---")
 
-# 簡化的 Legal Boundary
+# 1. 簡化的 Legal Boundary
 with st.expander("⚖️ **Legal Boundary**", expanded=False):
     st.caption("""
     This application presents a research simulation for conceptual and illustrative purposes only.
     It does not provide medical, financial, or policy advice.
     """)
 
-# 戰略對話與聯繫方式
+# 2. 戰略對話與聯繫方式
 st.markdown("### 🤝 **Initialize Strategic Dialogue**")
 st.write("To deploy the GHDP™ framework in your jurisdiction or organization, contact the Foresight 88 research team.")
 
@@ -282,12 +297,69 @@ with c2:
 with c3: 
     st.caption("© 2025 Foresight 88 Institute. All Rights Reserved.")
 
-# ==========================================
-# HIDDEN CHARTER (For Logic Consistency)
-# ==========================================
-# 這裡放置 Charter 內容但預設折疊，確保版本號 v3.0 一致
-with st.expander("📜 **Foresight 88 Research Charter (v3.0)**", expanded=False):
+# 3. 🛡️ EXPERT REVIEW Q&A (Full Documentation)
+st.markdown("---")
+with st.expander("🛡️ **Expert Review — Anticipated Challenges & Research Boundaries**", expanded=False):
     st.markdown("""
-    **Institution:** Foresight 88 Institute | **Model Status:** v3.0 Causal Edition
-    > *Sovereignty collapses not from growth, but from repeated tempo misalignment.*
+    ### **Foresight 88 | Tempo Intelligence (v3.0 Causal Edition)**
+    #### **Anticipated Challenges & Research Boundaries**
+
+    ---
+
+    **Q1. “Isn’t this just GDP with a subjective adjustment?”**
+    > **Short Answer:** No. GDP measures velocity. This framework examines capacity synchronization.
+    * **Extended Clarification:** GDP assumes that higher output velocity is universally absorbable. The Tempo Intelligence framework introduces biological and institutional limits as independent constraints, not moral overlays.
+    * **GHDP** is not a replacement metric, nor an optimization target. It is a stress-visualization lens that reveals when velocity begins to cannibalize adaptive capacity.
+    * *GDP answers how fast the system moves. GHDP asks whether the system can still metabolize that speed.*
+
+    **Q2. “Where is the empirical calibration? These parameters seem arbitrary.”**
+    > **Short Answer:** They are intentionally non-calibrated.
+    * **Extended Clarification:** This model does not aim for predictive accuracy or historical fit. Its purpose is structural reasoning, not econometric forecasting.
+    * Parameters are designed to be: **Directionally monotonic**, **Causally interpretable**, and **Stress-testable by the user**.
+    * Calibration would imply false precision and overfitting to past regimes — precisely what this framework questions. *This is a causal sandbox, not a regression engine.*
+
+    **Q3. “Why assume higher growth degrades resilience? Isn’t growth what builds capacity?”**
+    > **Short Answer:** Growth builds capacity only when tempo is metabolizable.
+    * **Extended Clarification:** v3.0 introduces a growth-pressure mechanism: Higher target growth compresses institutional recovery cycles, talent replenishment, and decision latency.
+    * The model does not claim growth is harmful. It models the hidden biological and institutional costs of acceleration when recovery mechanisms lag behind ambition.
+    * *Growth is not dangerous. Unsynchronized acceleration is.*
+
+    **Q4. “Isn’t the ‘Leader’s Biological Tempo’ dangerously close to pseudoscience?”**
+    > **Short Answer:** Only if interpreted as diagnosis — which it explicitly is not.
+    * **Extended Clarification:** The Micro layer is a self-reflective stress instrument, not a medical, psychological, or performance assessment.
+    * **No health data is collected. No normative thresholds are prescribed. All inputs are subjective perceptions.**
+    * The intent is to visualize non-linear fatigue dynamics, a phenomenon widely documented in decision science and organizational failure — without medicalization. *This module provokes awareness, not verdicts.*
+
+    **Q5. “Why mix Macro sovereignty with individual biology? Aren’t these different domains?”**
+    > **Short Answer:** They are different layers of the same tempo problem.
+    * **Extended Clarification:** Modern systems increasingly centralize decision authority under accelerated conditions. Macro collapse often manifests first as: Executive burnout, Judgment compression, and Adrenaline-driven overreach.
+    * Separating system tempo from human tempo creates a false abstraction. This framework reconnects them without conflating them.
+    * *Sovereignty fails through systems — but systems fail through humans.*
+
+    **Q6. “Does this model advocate slowing innovation or resisting AI?”**
+    > **Short Answer:** No. It assumes acceleration as the baseline.
+    * **Extended Clarification:** The framework is explicitly pro-technology, pro-algorithm, and pro-acceleration — under one condition: **Clear division of labor.**
+    * Algorithms handle speed, execution, pattern compression. Humans retain judgment, legitimacy, and accountability.
+    * Failure occurs not when algorithms advance, but when human roles are forced into algorithmic tempo. *The problem is not speed. The problem is role confusion under speed.*
+
+    **Q7. “What decisions should this model be used for?”**
+    > **Short Answer:** None — directly.
+    * **Extended Clarification:** This model does not produce recommendations, forecasts, or policy actions.
+    * It is designed for: **Pre-decision stress visualization**, **Narrative testing of strategic assumptions**, and **Early detection of tempo-risk accumulation**.
+    * Decisions remain human, contextual, and accountable. *This engine informs judgment. It does not replace it.*
+
+    **Q8. “What would invalidate this framework?”** (This is the question real experts care about.)
+    > **Short Answer:** If sustained high acceleration repeatedly produces no biological, institutional, or legitimacy degradation over long cycles.
+    * **Extended Clarification:** Should future systems demonstrate: Unlimited recovery, Zero fatigue accumulation, or Non-human governance legitimacy, then the core thesis would fail.
+    * Until then, tempo misalignment remains a plausible and observable systemic risk.
+
+    ---
+    #### **Closing Boundary Statement**
+    Foresight 88 Tempo Intelligence is a research instrument, not a doctrine.
+    It does not predict collapse. It does not oppose growth. It does not moralize technology.
+    **It asks one question only: At what point does speed stop compounding — and start consuming — sovereignty?**
+
+    🔒 **Version Notice**
+    This Q&A applies to v3.0 Causal Edition.
+    Model parameters are intentionally frozen for expert review.
     """)
