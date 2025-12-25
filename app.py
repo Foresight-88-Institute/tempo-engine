@@ -30,9 +30,72 @@ col1, col2 = st.columns([1, 4])
 with col1: st.markdown("# ⏳") 
 with col2:
     st.title("Foresight 88 Intelligence")
-    st.markdown("**Tempo Economics™ Simulation Engine | v2.8**")
+    st.markdown("**Tempo Economics™ Simulation Engine | v2.5 Research Charter**")
 
 st.markdown("---")
+
+# ==========================================
+# NEW: 📜 Foresight 88 Research Charter
+# ==========================================
+with st.expander("📜 **Foresight 88 Research Charter (Read the Manifesto)**", expanded=False):
+    st.markdown("""
+    ### **Tempo Intelligence Framework**
+    **Institution:** Foresight 88 Institute  
+    **Model Status:** Research Simulation Model (v2.3)
+
+    ---
+
+    #### **I. Core Thesis**
+    > *Sovereignty does not collapse from growth.* > *It erodes through repeated tempo misalignment — when systems accelerate faster than human, institutional, or biological rhythms can sustainably adapt.*
+
+    This framework exists to visualize that misalignment before it becomes irreversible.
+
+    #### **II. Scope of the Framework**
+    The Tempo Intelligence Framework operates across two analytical layers:
+    * **Macro Layer** — National & Institutional Sovereignty
+    * **Micro Layer** — Leadership & Human Biological Tempo
+    
+    *These layers are designed to be read together, not in isolation.*
+
+    #### **III. Position on GDP & Economic Growth (Macro)**
+    * **This research does not seek to replace GDP.** GDP remains a critical indicator of economic velocity, scale, and output efficiency.
+    * The **GHDP construct** is introduced solely as a complementary lens — to examine whether human adaptive capacity remains synchronized with that velocity over time.
+    * *Growth is not the threat. Unsustained acceleration is.*
+
+    #### **IV. Position on Technology & Algorithms**
+    Foresight 88 is not opposed to technological advancement, automation, or algorithmic optimization. This framework assumes continued acceleration driven by AI. Our position is one of division of labor:
+    * **Algorithms** optimize speed, execution, and pattern efficiency.
+    * **Humans** retain responsibility for judgment, legitimacy, accountability, and long-cycle coherence.
+    
+    *Sovereignty weakens not when algorithms advance — but when human systems are forced to operate at tempos they can no longer biologically or socially sustain.*
+
+    #### **V. Risk, Fear, and Intent**
+    This model is not designed to manufacture fear or collapse narratives. **Its purpose is preventive, not alarmist.**
+    By visualizing early-stage friction — before burnout or legitimacy loss materialize — the framework aims to support earlier calibration.
+    
+    *This is not a call to slow progress. It is a call to synchronize progress.*
+
+    #### **VI. Micro Layer Clarification (Leadership & Biology)**
+    The Leader’s Biological Tempo module is a **conceptual self-reflection instrument**, not a medical or performance diagnostic tool.
+    * It does not measure physical or mental health.
+    * All inputs are subjective perceptions.
+    * All outputs are narrative indices, intended to provoke awareness.
+    
+    *Where conflicts arise, professional medical or organizational guidance must take precedence.*
+
+    #### **VII. Research Boundaries**
+    This framework:
+    * Does not provide forecasts, valuations, or policy prescriptions.
+    * Does not optimize productivity or performance.
+    * Does not claim predictive certainty.
+    
+    It is a **stress-visualization instrument** — designed to expose where tempo, capacity, and legitimacy begin to diverge.
+
+    #### **VIII. Closing Principle**
+    > *When algorithmic tempo and human recovery remain aligned, growth compounds and sovereignty strengthens.* > *When misalignment repeats without correction, sovereignty erodes quietly — until it doesn’t.*
+    """)
+
+# 全局導航提示
 st.info("👆 **SYSTEM ARCHITECTURE**: This engine consists of two layers. Please switch tabs below to view **National Strategy** or **Personal Leadership**.")
 
 # 建立分頁
@@ -233,11 +296,11 @@ with tab2:
             st.caption("⚠️ **Warning**: The peaks in the first week are 'Adrenaline Masking'. The crash follows shortly after.")
 
 # ==========================================
-# FOOTER: 指定的免責聲明 + 聯繫方式
+# FOOTER: 免責聲明與聯繫
 # ==========================================
 st.markdown("---")
 
-with st.expander("⚖️ **Disclaimer & Research Philosophy (Open to Read)**", expanded=False):
+with st.expander("⚖️ **Disclaimer & Research Philosophy (Open to Read)**"):
     st.markdown("""
     **Foresight 88 Institute | Preliminary Research Model (v2.0)**
     
@@ -251,8 +314,12 @@ with st.expander("⚖️ **Disclaimer & Research Philosophy (Open to Read)**", e
     """)
 
 st.markdown("### 🤝 **Initialize Strategic Dialogue**")
-st.write("To deploy the GHDP™ framework, contact Foresight 88.")
+st.write("To deploy the GHDP™ framework in your jurisdiction or organization, contact the Foresight 88 research team.")
+
 c1, c2, c3 = st.columns([1, 1, 3])
-with c1: st.link_button("📧 Email Us", "mailto:eunice.wong@foresight88.institute")
-with c2: st.link_button("🔗 LinkedIn", "https://www.linkedin.com/in/eunice-wong-ba8399362/")
-with c3: st.caption("© 2025 Foresight 88 Institute. All Rights Reserved.")
+with c1:
+    st.link_button("📧 Email Us", "mailto:eunice.wong@foresight88.institute")
+with c2:
+    st.link_button("🔗 LinkedIn", "https://www.linkedin.com/in/eunice-wong-ba8399362/")
+with c3:
+    st.caption("© 2025 Foresight 88 Institute. All Rights Reserved.")
