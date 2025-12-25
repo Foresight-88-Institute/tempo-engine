@@ -30,18 +30,16 @@ col1, col2 = st.columns([1, 4])
 with col1: st.markdown("# ⏳") 
 with col2:
     st.title("Foresight 88 Intelligence")
-    st.markdown("**Tempo Economics™ Simulation Engine | v2.7**")
+    st.markdown("**Tempo Economics™ Simulation Engine | v2.8**")
 
 st.markdown("---")
-
-# 這裡不放長篇大論，以免擋住用戶操作，而是用提示引導
 st.info("👆 **SYSTEM ARCHITECTURE**: This engine consists of two layers. Please switch tabs below to view **National Strategy** or **Personal Leadership**.")
 
 # 建立分頁
 tab1, tab2 = st.tabs(["🌍 National Sovereignty (Macro)", "🧠 Leader's Biological Tempo (Micro)"])
 
 # ==========================================
-# TAB 1: 國家宏觀模擬 (Macro)
+# TAB 1: 國家宏觀模擬 (Macro - Tempo Misalignment)
 # ==========================================
 with tab1:
     st.subheader("1. Context Configuration")
@@ -148,7 +146,7 @@ with tab1:
     st.caption("Note: The temporary uplifts in the Gold Line represent 'Policy Relief Illusions' — structural corrections that fail to address the root biological drag.")
 
 # ==========================================
-# TAB 2: 個人/領袖掃描 (Micro)
+# TAB 2: 個人/領袖掃描 (Micro - Bio-Rhythm)
 # ==========================================
 with tab2:
     st.markdown("### 🧬 The Executive Biological Ledger")
@@ -235,76 +233,26 @@ with tab2:
             st.caption("⚠️ **Warning**: The peaks in the first week are 'Adrenaline Masking'. The crash follows shortly after.")
 
 # ==========================================
-# FOOTER: 這裡是最重要的修復，把Charter和Contact都放回來
+# FOOTER: 指定的免責聲明 + 聯繫方式
 # ==========================================
 st.markdown("---")
 
-# 1. 憲章與免責聲明 (可折疊)
-with st.expander("📜 **Foresight 88 Research Charter & Disclaimer (Read Manifesto)**", expanded=False):
+with st.expander("⚖️ **Disclaimer & Research Philosophy (Open to Read)**", expanded=False):
     st.markdown("""
-    ### **Tempo Intelligence Framework**
-    **Institution:** Foresight 88 Institute  
-    **Model Status:** Research Simulation Model (v2.7)
-
-    ---
-
-    #### **I. Core Thesis**
-    > *Sovereignty does not collapse from growth.* > *It erodes through repeated tempo misalignment — when systems accelerate faster than human, institutional, or biological rhythms can sustainably adapt.*
-
-    This framework exists to visualize that misalignment before it becomes irreversible.
-
-    #### **II. Scope of the Framework**
-    The Tempo Intelligence Framework operates across two analytical layers:
-    * **Macro Layer** — National & Institutional Sovereignty
-    * **Micro Layer** — Leadership & Human Biological Tempo
+    **Foresight 88 Institute | Preliminary Research Model (v2.0)**
     
-    *These layers are designed to be read together, not in isolation.*
-
-    #### **III. Position on GDP & Economic Growth (Macro)**
-    * **This research does not seek to replace GDP.** GDP remains a critical indicator of economic velocity, scale, and output efficiency.
-    * The **GHDP construct** is introduced solely as a complementary lens — to examine whether human adaptive capacity remains synchronized with that velocity over time.
-    * *Growth is not the threat. Unsustained acceleration is.*
-
-    #### **IV. Position on Technology & Algorithms**
-    Foresight 88 is not opposed to technological advancement, automation, or algorithmic optimization. This framework assumes continued acceleration driven by AI. Our position is one of division of labor:
-    * **Algorithms** optimize speed, execution, and pattern efficiency.
-    * **Humans** retain responsibility for judgment, legitimacy, accountability, and long-cycle coherence.
+    1.  **Nature of Simulation**: This engine is a theoretical prototype designed to visualize the *Gross Human Dynamics Product (GHDP)* concept. It calculates the friction coefficient introduced by environmental stressors on human biological systems.
     
-    *Sovereignty weakens not when algorithms advance — but when human systems are forced to operate at tempos they can no longer biologically or socially sustain.*
-
-    #### **V. Risk, Fear, and Intent**
-    This model is not designed to manufacture fear or collapse narratives. **Its purpose is preventive, not alarmist.**
-    By visualizing early-stage friction — before burnout or legitimacy loss materialize — the framework aims to support earlier calibration.
+    2.  **Relation to GDP**: **We do not oppose GDP.** We view GDP as a metric of *Velocity*. GHDP is introduced as a complementary metric of *Sustainability*.
     
-    *This is not a call to slow progress. It is a call to synchronize progress.*
-
-    #### **VI. Micro Layer Clarification (Leadership & Biology)**
-    The Leader’s Biological Tempo module is a **conceptual self-reflection instrument**, not a medical or performance diagnostic tool.
-    * It does not measure physical or mental health.
-    * All inputs are subjective perceptions.
-    * All outputs are narrative indices, intended to provoke awareness.
-    * **If any output conflicts with professional medical, psychological, or organizational advice, that advice must take precedence.**
-
-    #### **VII. Research Boundaries**
-    This framework:
-    * Does not provide forecasts, valuations, or policy prescriptions.
-    * Does not optimize productivity or performance.
-    * Does not claim predictive certainty.
+    3.  **Technological Stance**: **We are not anti-technology.** This model seeks to study the interplay between *algorithmic speed* and *biological recovery*, ensuring that technology serves human sovereignty.
     
-    It is a **stress-visualization instrument** — designed to expose where tempo, capacity, and legitimacy begin to diverge.
-
-    #### **VIII. Closing Principle**
-    > *When algorithmic tempo and human recovery remain aligned, growth compounds and sovereignty strengthens.* > *When misalignment repeats without correction, sovereignty erodes quietly — until it doesn’t.*
+    4.  **No Financial Advice**: The data projected here is for strategic illustrative purposes only.
     """)
 
-# 2. 戰略對話與聯繫方式 (必須保留)
 st.markdown("### 🤝 **Initialize Strategic Dialogue**")
 st.write("To deploy the GHDP™ framework, contact Foresight 88.")
-
 c1, c2, c3 = st.columns([1, 1, 3])
-with c1: 
-    st.link_button("📧 Email Us", "mailto:eunice.wong@foresight88.institute")
-with c2: 
-    st.link_button("🔗 LinkedIn", "https://www.linkedin.com/in/eunice-wong-ba8399362/")
-with c3: 
-    st.caption("© 2025 Foresight 88 Institute. All Rights Reserved.")
+with c1: st.link_button("📧 Email Us", "mailto:eunice.wong@foresight88.institute")
+with c2: st.link_button("🔗 LinkedIn", "https://www.linkedin.com/in/eunice-wong-ba8399362/")
+with c3: st.caption("© 2025 Foresight 88 Institute. All Rights Reserved.")
