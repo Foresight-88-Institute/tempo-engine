@@ -296,30 +296,25 @@ with tab2:
             st.caption("⚠️ **Warning**: The peaks in the first week are 'Adrenaline Masking'. The crash follows shortly after.")
 
 # ==========================================
-# FOOTER: 免責聲明與聯繫
+# FOOTER: Legal Boundary & Contact
 # ==========================================
 st.markdown("---")
 
-with st.expander("⚖️ **Disclaimer & Research Philosophy (Open to Read)**"):
-    st.markdown("""
-    **Foresight 88 Institute | Preliminary Research Model (v2.0)**
-    
-    1.  **Nature of Simulation**: This engine is a theoretical prototype designed to visualize the *Gross Human Dynamics Product (GHDP)* concept. It calculates the friction coefficient introduced by environmental stressors on human biological systems.
-    
-    2.  **Relation to GDP**: **We do not oppose GDP.** We view GDP as a metric of *Velocity*. GHDP is introduced as a complementary metric of *Sustainability*.
-    
-    3.  **Technological Stance**: **We are not anti-technology.** This model seeks to study the interplay between *algorithmic speed* and *biological recovery*, ensuring that technology serves human sovereignty.
-    
-    4.  **No Financial Advice**: The data projected here is for strategic illustrative purposes only.
+# 簡化的 Legal Boundary
+with st.expander("⚖️ **Legal Boundary**", expanded=False):
+    st.caption("""
+    This application presents a research simulation for conceptual and illustrative purposes only.
+    It does not provide medical, financial, or policy advice.
     """)
 
+# 戰略對話與聯繫方式
 st.markdown("### 🤝 **Initialize Strategic Dialogue**")
 st.write("To deploy the GHDP™ framework in your jurisdiction or organization, contact the Foresight 88 research team.")
 
 c1, c2, c3 = st.columns([1, 1, 3])
-with c1:
+with c1: 
     st.link_button("📧 Email Us", "mailto:eunice.wong@foresight88.institute")
-with c2:
+with c2: 
     st.link_button("🔗 LinkedIn", "https://www.linkedin.com/in/eunice-wong-ba8399362/")
-with c3:
+with c3: 
     st.caption("© 2025 Foresight 88 Institute. All Rights Reserved.")
