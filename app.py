@@ -29,7 +29,7 @@ col1, col2 = st.columns([1, 4])
 with col1: st.markdown("# ⏳") 
 with col2:
     st.title("Foresight 88 Intelligence")
-    st.markdown("**Tempo Economics™ Simulation Engine | v2.1 Volatility Edition**")
+    st.markdown("**Tempo Economics™ Simulation Engine | v2.2 Misalignment Model**")
 
 st.markdown("---")
 st.info("👆 **SYSTEM ARCHITECTURE**: This engine consists of two layers. Please switch tabs below to view **National Strategy** or **Personal Leadership**.")
@@ -38,7 +38,7 @@ st.info("👆 **SYSTEM ARCHITECTURE**: This engine consists of two layers. Pleas
 tab1, tab2 = st.tabs(["🌍 National Sovereignty (Macro)", "🧠 Leader's Biological Tempo (Micro)"])
 
 # ==========================================
-# TAB 1: 國家宏觀模擬 (Macro)
+# TAB 1: 國家宏觀模擬 (Tempo Misalignment Engine)
 # ==========================================
 with tab1:
     st.subheader("1. Context Configuration")
@@ -52,25 +52,25 @@ with tab1:
     # 預設參數
     if "Abu Dhabi" in scenario:
         default_growth, default_stress, default_resilience = 5.5, 45, 85
-        desc = "High resource buffer, ambitious AI integration. Opportunity to define global tempo."
+        desc = "High resource buffer. Opportunity to define global tempo."
     elif "Singapore" in scenario:
         default_growth, default_stress, default_resilience = 3.5, 70, 75
-        desc = "High efficiency, high stress. Approaching the 'Optimization Ceiling'."
+        desc = "High efficiency. Approaching the 'Optimization Ceiling'."
     elif "Japan" in scenario:
         default_growth, default_stress, default_resilience = 1.2, 65, 40
-        desc = "Aging demographic limits resilience. Structural fatigue evident."
+        desc = "Structural fatigue evident. Low volatility but high drag."
     else: # Korea
         default_growth, default_stress, default_resilience = 2.5, 90, 30
-        desc = "CRITICAL: Tempo stress exceeds biological recovery limits. Demographic collapse risk."
+        desc = "CRITICAL: Tempo misalignment exceeds biological limits. High oscillation risk."
 
     st.caption(f"💡 **Context Intelligence**: {desc}")
     
     with st.expander("ℹ️ **MACRO PROTOCOL: How to Run (Click to Expand)**", expanded=False):
         st.markdown("""
-        **Objective: Minimize Volatility and the Gap.**
-        1.  **Define Strategy**: Set target GDP growth.
-        2.  **Observe Volatility**: High stress creates oscillation (instability).
-        3.  **Analyze the Gap**: Where the Gold Line fractures from the Red Line.
+        **Objective: Observe the 'Struggle' between Policy and Biology.**
+        1.  **Set Strategy**: Define target growth and systemic stress.
+        2.  **Observe**: The Gold Line (GHDP) will oscillate and try to recover (Policy Relief).
+        3.  **Diagnosis**: Watch how 'Irreversible Drag' eventually pulls the system down despite corrections.
         """)
     
     st.markdown("---")
@@ -85,50 +85,59 @@ with tab1:
     with col_c:
         human_resilience = st.slider("Human Capital Resilience", 0, 100, default_resilience)
 
-    # === NEW: 智能關聯提示 (The Analyst Logic) ===
-    # 這是妳要的：如果 Growth 高但 Stress 低，給出提示，而不是強制改動
-    if target_growth > 4.0 and tempo_stress < 60:
-        st.warning(f"⚠️ **Analyst Note**: Targeting {target_growth}% growth typically requires Systemic Acceleration > 60. Current setting ({tempo_stress}) may be unrealistic.")
-    elif tempo_stress > 80 and human_resilience < 40:
-        st.error("⚠️ **CRITICAL WARNING**: High Stress + Low Resilience = High Volatility Forecast.")
-
-    # 4. 運算核心 (UPGRADED MATH)
+    # 4. 運算核心 (THE NEW ENGINE)
+    # 核心思想：Sovereignty collapses from repeated tempo misalignment.
+    
     years = np.arange(2025, 2036)
     n_years = len(years)
     
+    # A. GDP 路径 (Base Velocity)
     gdp = [100 * ((1 + target_growth/100) ** i) for i in range(n_years)]
     
-    # 核心公式升級：加入震盪 (Oscillation)
-    # Friction Gap 定義了波動的幅度
-    raw_gap = tempo_stress - human_resilience
-    instability_factor = max(0, raw_gap) # 只有當壓力 > 韌性時，才會開始不穩
+    # B. 节奏失配强度 (Misalignment Intensity 0-1)
+    # 当压力 > 韧性，失配开始产生
+    tempo_misalignment = max(0, (tempo_stress - human_resilience) / 100)
     
     ghdp = []
+    
+    # 用于存储中间变量以便调试或以后展示
+    debug_oscillation = []
+    debug_drag = []
+    
     for i in range(n_years):
-        # 1. 基礎衰減 (原本的逻辑)
-        cumulative_drag = (instability_factor * 0.005 * i * i) / 100
+        # 1. 核心一：节奏震荡 (Tempo Oscillation)
+        # 生物与制度的冲突，导致系统不稳。i/1.5 控制震荡频率
+        oscillation = np.sin(i / 1.5) * tempo_misalignment * 0.08
         
-        # 2. 節奏震盪 (The Tempo Oscillation) - 妳的 Sin 邏輯
-        # 隨著時間推移(i)，不穩定性會讓震盪越來越大
-        # np.sin(i) 創造波形，instability_factor 決定波浪多高
-        oscillation = np.sin(i * 0.8) * (instability_factor * 0.2) * (i * 0.1)
+        # 2. 核心二：修复幻觉 (Policy Relief Illusion)
+        # 每4年一次的政策刺激或选举年，系统以为自己修好了
+        if i > 0 and i % 4 == 0:
+            policy_relief = 0.06 # 短暂的反弹
+        else:
+            policy_relief = 0
+            
+        # 3. 核心三：不可逆生物侵蚀 (Irreversible Drag)
+        # 疲劳是非线性的 (i ** 1.4)，时间越久，拖累越重
+        irreversible_drag = tempo_misalignment * 0.015 * (i ** 1.4)
         
-        # 3. 組合
-        # 如果 instability 是 0，oscillation 也是 0，線條就是平滑的
-        val = gdp[i] * (1 - cumulative_drag) + oscillation
-        ghdp.append(val)
+        # 4. 最终合成
+        # 基础调整系数 = 1 - 拖累 + 震荡 + 救市
+        adjusted = 1 - irreversible_drag + oscillation + policy_relief
+        adjusted = max(0, adjusted) # 主权不能为负
+        
+        ghdp.append(gdp[i] * adjusted)
 
     # 5. 繪製圖表
-    st.subheader("3. The Sovereignty Gap Visualization")
+    st.subheader("3. The Tempo Misalignment Visualization")
     fig, ax = plt.subplots(figsize=(10, 4))
     fig.patch.set_alpha(0.0) 
     ax.set_facecolor('#0e1117') 
     
-    ax.plot(years, gdp, color='#FF4B4B', linestyle='--', label='Traditional GDP (Nominal)', linewidth=2)
-    # GHDP 線條加粗一點，讓波動更明顯
-    ax.plot(years, ghdp, color='#C5A059', label='Real GHDP (Volatility Adjusted)', linewidth=3)
+    ax.plot(years, gdp, color='#FF4B4B', linestyle='--', label='Systemic Velocity (GDP)', linewidth=2)
+    # GHDP 线条
+    ax.plot(years, ghdp, color='#C5A059', label='Biological Capacity (GHDP)', linewidth=3)
     
-    ax.set_title("Forecast 2025-2035: Velocity vs. Volatility", color='gray', fontsize=12)
+    ax.set_title("Forecast 2025-2035: The Struggle for Rhythm", color='gray', fontsize=12)
     ax.tick_params(axis='x', colors='gray')
     ax.tick_params(axis='y', colors='gray')
     ax.legend(facecolor='#0e1117', labelcolor='white')
@@ -146,15 +155,17 @@ with tab1:
     
     m1, m2, m3 = st.columns(3)
     m1.metric("2035 GDP Projection", f"${int(gdp[-1])}B", "+Growth")
-    m2.metric("2035 GHDP Projection", f"${int(ghdp[-1])}B", f"Gap: {int(final_gap)}", delta_color="inverse")
+    m2.metric("2035 GHDP Projection", f"${int(ghdp[-1])}B", f"Gap: -{int(final_gap)}B", delta_color="inverse")
     
-    # 根據震盪程度給出診斷
-    if instability_factor > 40:
-        st.error(f"⚠️ **HIGH VOLATILITY DETECTED**: System is oscillating dangerously. Structural failure probable.")
-    elif instability_factor > 10:
-        st.warning("⚠️ **RISK**: Friction is causing drag. Efficiency is compromised.")
+    # 动态点评
+    if tempo_misalignment > 0.4:
+        st.error(f"⚠️ **SYSTEM FAILURE**: Biology has collapsed under stress. Notice the sharp divergence after 2030.")
+    elif tempo_misalignment > 0.1:
+        st.warning("⚠️ **OSCILLATION DETECTED**: System is fighting to recover (see peaks), but drag is accumulating.")
     else:
-        st.success("✅ **STABLE RHYTHM**: System is growing without volatility.")
+        st.success("✅ **SYNCHRONIZED**: Tempo is aligned. Growth is sustainable.")
+        
+    st.caption("Note: The temporary uplifts in the Gold Line represent 'Policy Relief Illusions' — structural corrections that fail to address the root biological drag.")
 
 # ==========================================
 # TAB 2: 個人/領袖掃描 (Micro)
@@ -234,9 +245,9 @@ with tab2:
 st.markdown("---")
 with st.expander("⚖️ **Disclaimer & Research Philosophy**"):
     st.markdown("""
-    **Foresight 88 Institute | Research Model (v2.1)**
-    We do not oppose GDP (Velocity). We introduce GHDP as a metric of Stability and Sustainability.
-    Algorithms are accelerators; we study the friction they create on biological systems.
+    **Foresight 88 Institute | Research Model (v2.2)**
+    **Core Thesis**: Sovereignty collapses not from growth, but from repeated tempo misalignment.
+    **Methodology**: This engine simulates the friction between systemic acceleration and biological limits, accounting for 'policy relief illusions' and irreversible fatigue.
     """)
 
 st.markdown("### 🤝 **Initialize Strategic Dialogue**")
