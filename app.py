@@ -326,3 +326,21 @@ with st.expander("🛡️ **Expert Review — Anticipated Challenges & Research 
     This Q&A applies to v3.2 Release Candidate.
     Model parameters are intentionally frozen for expert review.
     """)
+
+# ... (你的所有代碼都在上面) ...
+
+# ==========================================
+# SIDEBAR: VISITOR COUNTER
+# ==========================================
+# 放在側邊欄底部，低調的計數器
+with st.sidebar:
+    st.markdown("---")
+    st.caption("📡 **Live Telemetry**")
+    # 使用 visitor-badge.laobi.icu 服務，page_id 必須是唯一的
+    st.markdown(
+        """
+        ![Visitor Count](https://visitor-badge.laobi.icu/badge?page_id=foresight88_ghdp_engine_v3&left_color=gray&right_color=orange)
+        """,
+        unsafe_allow_html=True
+    )
+
